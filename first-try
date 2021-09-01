@@ -1,0 +1,51 @@
+function showError(input,message){
+    const formControle = input.parentElement;
+     formControle.className = 'form-controle error';
+
+    const small = formControle.querySelector('small');
+    small.innerText = message;
+
+}
+function showSuccess(input){
+    const formControle = input.parentElement;
+     formControle.className = 'form-controle success';
+}
+
+
+function isValidEmail(email){
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+form.addEventListener('submit',function(e){
+    e.preventDefault();
+
+    if (username.value === '') {
+        showError(username,'please put Username');
+    }else{
+        showSuccess(username);
+    }
+
+    if (email.value === '') {
+        showError(email,'please put email');
+     } else if(!isValidEmail(email.value)){
+        showError(email,'email is not valid');
+     
+    }else{
+        showSuccess(email);
+    }
+
+    if (Password.value === '') {
+        showError(Password,'please put Password');
+    }else{
+        showSuccess(Password);
+    }
+
+    if (Password2.value === '') {
+        showError(Password2,'please put Password2');
+    }else{
+        showSuccess(Password2);
+    }
+
+
+})

@@ -1,0 +1,65 @@
+function checkInputs(){
+    //get the value form the inputs
+    const usernameValue = username.value.trim();
+    const emailValue = email.value.trim();
+    const passwordValue = Password.value.trim();
+    const password2Value = Password2.value.trim();
+
+    function setErrorFor(input,message){
+    
+        const formController = input.parentElement;
+        formController.className = 'form-controle error';
+        const small = formController.querySelector('small');
+        small.innerText = message;
+    }
+
+    function setSuccessfor(input){
+    
+        const formController = input.parentElement;
+        formController.className = 'form-controle success';
+
+    }
+    //email validation
+    function isValidEmail(email){
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    
+
+}
+    
+    
+    if (usernameValue === '') {
+        //show errors
+        //add errors class
+        setErrorFor(username,'Please add Username');
+      
+    }else{
+        //add success class
+        setSuccessfor(username);
+    }
+
+
+    if (emailValue === '') {
+        //show errors
+        //add errors class
+        setErrorFor(email,'Please add Email');
+    }else if(!isValidEmail(emailValue)){
+        setErrorFor(email,'Please add Correct Email');
+    }else{
+        //add success class
+        setSuccessfor(email);
+    }
+
+    if (passwordValue === '') {
+        setErrorFor(Password,'please put Password');
+    }else{
+        setSuccessfor(Password);
+    }
+
+    if (password2Value === '') {
+        setErrorFor(Password2,'please put Password2');
+    }else{
+        setSuccessfor(Password2);
+    }
